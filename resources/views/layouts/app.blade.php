@@ -50,9 +50,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/') }}">{{ __('Home') }}</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('admin.project.index') }}">{{ __('projects') }}</a>
-                        </li>
+                        @auth
+                           <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin.project.index') }}">{{ __('Projects') }}</a>
+                        </li> 
+                        @endauth
+                        
                     </ul>
 
                     <!-- Right Side Of Navbar -->

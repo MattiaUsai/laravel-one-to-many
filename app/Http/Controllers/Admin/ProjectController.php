@@ -14,7 +14,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return 'lista dei project';
+        $projects = Project::all();
+        return view("admin.project.index", compact("projects"));
     }
 
     /**
@@ -22,7 +23,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return 'creare project';
+        return view("admin.project.create");
+
         
     }
 
@@ -31,7 +33,17 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $data=$request->validated();
+        $project=new Project();
+        $project->nome=$data['nome'];
+        $project->repository=$data['nome'];
+        
+        $project->prezzo=$data['prezzo'];
+        $project->descrizione=$data['descrizione'];
+        
+        $project->save();
+
+        return redirect()->route('admin.project.index')->with('message', 'creazione avvenuta con successo');
     }
 
     /**
@@ -39,7 +51,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view("admin.project.show", compact("project"));
+        
     }
 
     /**
@@ -47,7 +60,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return view("admin.project.edit", compact("project"));
+        
     }
 
     /**
@@ -55,7 +69,10 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+         $data = $request->all();
+        $project->update($data);
+
+        return redirect()->route('admin.project.index')->with('message', 'Modifica avvenuta con successo');
     }
 
     /**
@@ -63,6 +80,7 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('admin.project.index')->with('messagedelete', 'Eliminazione avvenuta con successo');
     }
 }
