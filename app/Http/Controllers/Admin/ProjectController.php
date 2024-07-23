@@ -36,7 +36,7 @@ class ProjectController extends Controller
         $data=$request->validated();
         $project=new Project();
         $project->nome=$data['nome'];
-        $project->repository=$data['nome'];
+        $project->repository=$data['repository'];
         
         $project->prezzo=$data['prezzo'];
         $project->descrizione=$data['descrizione'];
