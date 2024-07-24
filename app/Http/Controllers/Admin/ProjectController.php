@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Http\Controllers\Controller;
+use App\Models\Type;
 
 class ProjectController extends Controller
 {
@@ -23,7 +24,9 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view("admin.project.create");
+
+        $types = Type::all();
+        return view("admin.project.create", compact("types"));
 
         
     }
@@ -40,6 +43,7 @@ class ProjectController extends Controller
         
         $project->prezzo=$data['prezzo'];
         $project->descrizione=$data['descrizione'];
+        $project->type_id=$data['type_id'];
         
         $project->save();
 

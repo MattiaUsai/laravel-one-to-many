@@ -18,6 +18,10 @@
                 <h3>Prezzo</h3>
                 <p>{{$project->prezzo}}</p>
             </li>
+            <li>
+                <h3>Categoria</h3>
+                <p>{{$project->type?->title}}</p>
+            </li>
         </ul>
     </div>
 </div>

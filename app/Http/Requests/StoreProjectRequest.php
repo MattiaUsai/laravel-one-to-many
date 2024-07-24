@@ -27,8 +27,9 @@ class StoreProjectRequest extends FormRequest
             'nome' => ['required', 'max:50'],
             'repository' => ['required','max:100'],
             
-            'prezzo' => ['required'],
+            'prezzo' => ['nullable'],
             'descrizione' => ['required','max:300'],
+            'type_id' => ['nullable','exists:types,id'],
         ];
     }
 }

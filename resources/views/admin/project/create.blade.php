@@ -55,6 +55,24 @@
                 </div>
                 @endif
             </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Tipo</label>
+                <select class="form-select" aria-label="Default select example" name="type_id" @if ($errors->get('type_id')) is-invalid @endif>
+                    @if ($errors->get('type_id'))
+                <div class="invalid-feedback">
+                    @foreach ($errors->get('type_id') as $error )
+                    {{ $error }}
+                    @endforeach
+                </div>
+                @endif
+                    <option value="">Seleziona tipo</option>
+                    @foreach ($types as $type )
+                        <option value="{{$type->id}}">{{$type->title}}</option>
+                        <option value="33">prova</option>
+                    @endforeach
+                </select>
+                
+            </div>
             <button type="submit" class="btn btn-primary">Crea</button>
         </form>
     </div>
